@@ -66,20 +66,28 @@ class TestCommand(PluginCommand):
         if platform.system() == "Windows":
             print("SSS", "cl", shutil.which("cl"))
 
-            tester.check_command("where cl")
-            tester.check_command("where nmake")
-            tester.check_path("cl")
+            tester.which("cl")
+            tester.which("nmake")
+            tester.which("git")
+            tester.which("ssh")
+            tester.which("ssh-keygen")
+            tester.which("docker")
+            tester.which("yamllint")
 
-        tester.check_command("git --version", test="git version")
-        tester.check_command("ssh", test="usage", show=False)
-        tester.check_command("ssh-keygen --help", test="usage", show=False)
+        else:
+
+            tester.check_command("git --version", test="git version")
+            tester.check_command("ssh", test="usage", show=False)
+            tester.check_command("ssh-keygen --help", test="usage", show=False)
+            tester.check_command("docker --version", test="Docker version")
+            tester.check_command("VirtualBox --help",
+                                 test="Oracle VM VirtualBox VM Selector",
+                                 show=False)
+            tester.check_command("yamllint", test="usage: yamllint", show=False)
 
         tester.is_user_name_valid()
         tester.check_mongo()
-        tester.check_command("docker --version", test="Docker version")
-        tester.check_command("VirtualBox --help", test="Oracle VM VirtualBox VM Selector", show=False)
 
         tester.usage()
-        tester.check_command("yamllint", test="usage: yamllint", show=False)
         tester.check_yaml()
         return ""

@@ -143,6 +143,13 @@ class CloudmeshTest:
         path = os.environ["PATH"]
         print(path)
 
+    def which(self, command):
+        result = shutil.which(command)
+        if result is not None:
+            Console.ok(f"OK. {command} found: {result}")
+        else:
+            Console.error(f"Command {command} not found")
+            
     def check_command(self, command, test=None, show=True):
 
         # banner(f"testing command: {command}")
