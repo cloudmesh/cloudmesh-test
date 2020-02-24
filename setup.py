@@ -41,11 +41,12 @@ with open('README.md') as f:
 
 
 
-NAME = "cloudmesh-windows"
-DESCRIPTION = "A command called windows and foo for the cloudmesh shell"
+NAME = "cloudmesh-test"
+DESCRIPTION = "A command to do a simple test to identify potential flaws "\
+              "before using cloudmesh"
 AUTHOR = "Gregor von Laszewski"
 AUTHOR_EMAIL = "laszewski@gmail.com"
-URL = "https://github.com/cloudmesh/cloudmesh-windows"
+URL = "https://github.com/cloudmesh/cloudmesh-test"
 
 
 setup(

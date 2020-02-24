@@ -11,6 +11,7 @@ from cloudmesh.common.Shell import Shell
 from cloudmesh.common.console import Console
 from cloudmesh.common.util import path_expand
 from cloudmesh.configuration.Config import Config
+from cloudmesh.configuration.__version__ import version as latest
 
 """
 are you running in a vnenv
@@ -62,6 +63,15 @@ class CloudmeshTest:
         print(f"Location of cloudmesh.yaml: {location}")
         print("we run a simple yamllint test. Not all issues reported need to be corrected.")
 
+        current = config["cloudmesh.version"]
+        if latest == current:
+            Console.ok(f"OK. you have cloudmesh.yaml version {current}")
+        else:
+            Console.warning(f"Your cloudmesh.yaml file version is not up to date.")
+            Console.warning(f"Production version: {latest}")
+            Console.warning(f"Your version:       {current}")
+            Console.warning(f"Please carefully check your cloudmesh.yaml")
+
         yamlfile = Path(f"{location}/cloudmesh.yaml")
         result = Shell.run(f"yamllint {yamlfile}")
         for line in result.splitlines():
@@ -82,15 +92,15 @@ class CloudmeshTest:
 
     def usage(self):
         hdd = psutil.disk_usage('/')
-        print("Disk Space")
-        print("Total: {total:.0f} GiB".format(total=hdd.total / (2 ** 30)))
-        print("Used: {used:.0f} GiB".format(used=hdd.used / (2 ** 30)))
-        print("Free: {free:.0f} GiB".format(free=hdd.free / (2 ** 30)))
+        Console.info("Disk Space")
+        print("      Total: {total:.0f} GiB".format(total=hdd.total / (2 ** 30)))
+        print("      Used: {used:.0f} GiB".format(used=hdd.used / (2 ** 30)))
+        print("      Free: {free:.0f} GiB".format(free=hdd.free / (2 ** 30)))
 
         mem = psutil.virtual_memory()
         total = mem.total >> 30
         available = mem.available >> 30
-        print(f"Memory: {available}GB free from {total}GB")
+        print(f"      Memory: {available}GB free from {total}GB")
 
     def is_port_used(self, port):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
