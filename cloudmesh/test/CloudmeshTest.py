@@ -146,7 +146,10 @@ class CloudmeshTest:
 
         # banner(f"testing command: {command}")
         try:
-            result = Shell.run(command).strip()
+            if sys.platform in ["win32"]:
+                result = Shell.run2(command).strip()
+            else:
+                result = Shell.run(command).strip()
 
             if test not in result:
                 if show:
