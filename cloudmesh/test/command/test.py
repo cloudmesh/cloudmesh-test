@@ -64,10 +64,9 @@ class TestCommand(PluginCommand):
         #
 
         if platform.system() == "Windows":
-            #tester.check_command("cl")
-            #tester.check_command("nmake")
+            tester.check_command("where cl")
+            tester.check_command("where nmake")
             tester.check_path("cl")
-            pass
 
         tester.check_command("git --version", test="git version")
         tester.check_command("ssh", test="usage", show=False)
