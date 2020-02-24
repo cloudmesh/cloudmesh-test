@@ -114,7 +114,7 @@ class CloudmeshTest:
     # noinspection PyPep8
     def check_mongo(self):
         if platform.system() == "Windows":
-            result = Shell.run("sc.exe query MongoDB")
+            result = Shell.run2("sc.exe query MongoDB")
             if "The specified service does not exist" in result \
                 and "FAILED" in result:
                 Console.ok("The MongoDB service is not running")
@@ -149,7 +149,7 @@ class CloudmeshTest:
             Console.ok(f"OK. {command} found: {result}")
         else:
             Console.error(f"Command {command} not found")
-            
+
     def check_command(self, command, test=None, show=True):
 
         # banner(f"testing command: {command}")
