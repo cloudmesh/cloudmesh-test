@@ -61,10 +61,10 @@ class CloudmeshTest:
             kind = "unsupported"
 
         if kind == "unsuported":
-            Console.error(f"Windows {osc} {version}: {kind}")
+            Console.error(f"Windows {osv} {version}: {kind}")
             return False
         else:
-            Console.ok(f"OK. Windows {osc} {version}: {kind}")
+            Console.ok(f"OK. Windows {osv} {version}: {kind}")
         return True
 
 
