@@ -51,6 +51,23 @@ class CloudmeshTest:
     def __init__(self):
         pass
 
+    def check_windows(self):
+        osv, n, version = platform.platform().split(".")
+        if version == "18362":
+            kind = "1903"
+        elif version == "18363":
+            kind = "1909"
+        else:
+            kind = "unsupported"
+
+        if kind == "unsuported":
+            Console.error(f"Windows {osc} {version}: {kind}")
+            return False
+        else:
+            Console.ok(f"OK. Windows {osc} {version}: {kind}")
+        return True
+
+
     def check_yaml(self):
         config = Config()
         errors = False

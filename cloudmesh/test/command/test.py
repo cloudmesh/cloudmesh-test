@@ -2,6 +2,8 @@ from __future__ import print_function
 
 import platform
 
+from cloudmesh.common.console import  Console
+
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
 from cloudmesh.test.CloudmeshTest import CloudmeshTest
@@ -64,7 +66,11 @@ class TestCommand(PluginCommand):
         #
 
         if platform.system() == "Windows":
-            print("SSS", "cl", shutil.which("cl"))
+
+            if not tester.check_windows():
+                Console.error(" THIS VERSION OF WINDOWS IS NOT SUPPORTED.")
+                return ""
+
 
             tester.which("cl")
             tester.which("nmake")
@@ -73,6 +79,7 @@ class TestCommand(PluginCommand):
             tester.which("ssh-keygen")
             tester.which("docker")
             tester.which("yamllint")
+
 
         else:
 
