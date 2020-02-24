@@ -1,4 +1,4 @@
-package=windows
+package=test
 UNAME=$(shell uname)
 VERSION=`head -1 VERSION`
 
