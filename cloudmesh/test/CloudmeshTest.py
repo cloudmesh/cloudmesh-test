@@ -137,6 +137,11 @@ class CloudmeshTest:
         else:
             Console.error(f"Pythin is not 32 or 64 bit: {length}")
 
+
+    def check_path(self, command):
+        path = os.environ["PATH"]
+        print(path)
+
     def check_command(self, command, test=None, show=True):
 
         # banner(f"testing command: {command}")
