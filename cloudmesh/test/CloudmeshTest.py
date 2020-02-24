@@ -114,15 +114,15 @@ class CloudmeshTest:
     # noinspection PyPep8
     def check_mongo(self):
         if platform.system() == "Windows":
-            result = Shell.run2("sc.exe query MongoDB")
-            if "The specified service does not exist" in result \
-                and "FAILED" in result:
+            result = os.system("sc.exe query MongoDB")
+            if result == 1060:
                 Console.ok("The MongoDB service is not running")
             else:
                 Console.error("The MOngo DB service is running")
                 Console.error(result)
 
-            self.check_command("mongod.exe")  # find a good test
+            self.which("mongod")
+            self.which("mongo")
 
         if self.is_port_used(27017):
             Console.error("The mongo port 27017 is already used")
