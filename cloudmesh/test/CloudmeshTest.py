@@ -74,22 +74,25 @@ class CloudmeshTest:
             Console.warning(f"Please carefully check your cloudmesh.yaml")
 
         yamlfile = Path(f"{location}/cloudmesh.yaml")
-        result = Shell.run(f"yamllint {yamlfile}")
-        for line in result.splitlines():
-            line = line.strip()
-            if "missing document start" in line:
-                continue
-            if "line too long" in line:
-                continue
-            if "error" in line:
-                errors = True
-                Console.error (line)
-            else:
-                print(line)
-        if errors:
-            Console.error("We found issues in your yaml file")
+        if sys.platform in ["win32"]:
+            r = os.system((f"yamllint {yamlfile}"))
         else:
-            Console.ok(f"OK. Your yaml file {yamlfile} seems valid")
+            result = Shell.run(f"yamllint {yamlfile}")
+            for line in result.splitlines():
+                line = line.strip()
+                if "missing document start" in line:
+                    continue
+                if "line too long" in line:
+                    continue
+                if "error" in line:
+                    errors = True
+                    Console.error (line)
+                else:
+                    print(line)
+            if errors:
+                Console.error("We found issues in your yaml file")
+            else:
+                Console.ok(f"OK. Your yaml file {yamlfile} seems valid")
 
     def usage(self):
         hdd = psutil.disk_usage('/')
