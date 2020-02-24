@@ -12,6 +12,7 @@ from cloudmesh.common.console import Console
 from cloudmesh.common.util import path_expand
 from cloudmesh.configuration.Config import Config
 from cloudmesh.configuration.__version__ import version as latest
+import shutil
 
 """
 are you running in a vnenv
@@ -145,6 +146,7 @@ class CloudmeshTest:
     def check_command(self, command, test=None, show=True):
 
         # banner(f"testing command: {command}")
+
         try:
             if sys.platform in ["win32"]:
                 result = Shell.run2(command).strip()

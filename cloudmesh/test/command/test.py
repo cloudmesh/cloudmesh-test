@@ -5,7 +5,7 @@ import platform
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
 from cloudmesh.test.CloudmeshTest import CloudmeshTest
-
+import shutil
 
 class TestCommand(PluginCommand):
 
@@ -64,6 +64,8 @@ class TestCommand(PluginCommand):
         #
 
         if platform.system() == "Windows":
+            print("SSS", "cl", shutil.which("cl"))
+
             tester.check_command("where cl")
             tester.check_command("where nmake")
             tester.check_path("cl")
