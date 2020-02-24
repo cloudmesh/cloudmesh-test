@@ -53,9 +53,10 @@ class CloudmeshTest:
 
     def check_windows(self):
         osv, n, version = platform.platform().split(".")
-        if version == "18362":
+
+        if "18362" in version:
             kind = "1903"
-        elif version == "18363":
+        elif "18363" in version:
             kind = "1909"
         else:
             kind = "unsupported"
