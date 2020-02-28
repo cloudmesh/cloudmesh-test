@@ -185,7 +185,6 @@ class CloudmeshTest:
             else:
                 result = Shell.run(command).strip()
 
-            print ("result", result)
             for test in tests:
                 print (test)
                 if test in result:
