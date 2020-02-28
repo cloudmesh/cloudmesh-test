@@ -57,7 +57,6 @@ class TestCommand(PluginCommand):
         # Python setup
         #
         tester.check_venv()
-        tester.check_command("python --version", test="3.8.1")
         tester.check_python()
         tester.check_command("pip --version", test="20.0.2")
 

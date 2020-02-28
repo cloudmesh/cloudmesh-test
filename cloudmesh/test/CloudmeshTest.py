@@ -151,6 +151,7 @@ class CloudmeshTest:
             Console.ok("OK. The mongo port 27017 is free")
 
     def check_python(self):
+        self.check_python_command()
         length = platform.architecture()[0]
         if length == "32bit":
             Console.error("You run Python 32 bit")
@@ -170,6 +171,36 @@ class CloudmeshTest:
             Console.ok(f"OK. {command} found: {result}")
         else:
             Console.error(f"Command {command} not found")
+
+
+    def check_python_command(self,
+                     command="python --version",
+                     tests=["3.8.1", "3.8.2"],
+                     show=True):
+
+        # banner(f"testing command: {command}")
+        try:
+            if sys.platform in ["win32"]:
+                result = Shell.run2(command).strip()
+            else:
+                result = Shell.run(command).strip()
+
+            print ("result", result)
+            for test in tests:
+                print (test)
+                if test in result:
+                    if show:
+                        Console.ok(f"OK. {test} found in {result}")
+                    else:
+                        Console.ok(f"OK. {command} found")
+                    return
+
+            if show:
+                Console.error(f"python not found in {result}")
+            else:
+                Console.error(f"{command} not found")
+        except:
+            Console.error(f"command '{command}' not successfull")
 
     def check_command(self, command, test=None, show=True):
 
