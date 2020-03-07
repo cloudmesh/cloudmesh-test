@@ -1,4 +1,4 @@
-package=cloudmesh-test
+package=test
 UNAME=$(shell uname)
 VERSION=`head -1 VERSION`
 
@@ -11,11 +11,22 @@ endef
 
 all: readme
 
-source:
-	cd ../cloudmesh.common; make source
-	$(call banner, "Install cloudmesh-cmd5")
+ource:
+	cd ../cloudmesh-cmd5; make source
+	$(call banner, "Install cloudmesh-sys")
 	pip install -e . -U
-	cms help
+	$(call banner, "cms help test")
+	cms help test
+
+requirements:
+	echo "cloudmesh-common" > tmp.txt
+	echo "cloudmesh-cmd5" >> tmp.txt
+	pip-compile setup.py
+	fgrep -v "# via" requirements.txt | fgrep -v "cloudmesh" >> tmp.txt
+	mv tmp.txt requirements.txt
+	-git commit -m "update requirements" requirements.txt
+	-git push
+
 
 clean:
 	$(call banner, "CLEAN")
