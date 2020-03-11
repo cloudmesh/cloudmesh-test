@@ -98,7 +98,7 @@ release: clean
 	@cat VERSION
 	@echo
 	# sleep 10
-	# pip install -U cloudmesh-common
+	# pip install -U cloudmesh-test
 
 
 dev:
