@@ -1,11 +1,12 @@
 import platform
 
-from cloudmesh.common.console import  Console
+from cloudmesh.common.console import Console
 
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
 from cloudmesh.test.CloudmeshTest import CloudmeshTest
 import shutil
+
 
 class TestCommand(PluginCommand):
 
@@ -67,7 +68,6 @@ class TestCommand(PluginCommand):
             if not tester.check_windows():
                 Console.error(" THIS VERSION OF WINDOWS IS NOT SUPPORTED.")
                 return ""
-
 
             tester.which("cl")
             tester.which("nmake")

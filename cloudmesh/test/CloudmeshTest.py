@@ -46,6 +46,7 @@ bcdedit /set hypervisorlaunchtype auto
 
 """
 
+
 class CloudmeshTest:
 
     def __init__(self):
@@ -67,7 +68,6 @@ class CloudmeshTest:
         else:
             Console.ok(f"OK. Windows {osv} {version}: {kind}")
         return True
-
 
     def check_yaml(self):
         config = Config()
@@ -104,7 +104,7 @@ class CloudmeshTest:
                     continue
                 if "error" in line:
                     errors = True
-                    Console.error (line)
+                    Console.error(line)
                 else:
                     print(line)
             if errors:
@@ -160,7 +160,6 @@ class CloudmeshTest:
         else:
             Console.error(f"Pythin is not 32 or 64 bit: {length}")
 
-
     def check_path(self, command):
         path = os.environ["PATH"]
         print(path)
@@ -172,11 +171,10 @@ class CloudmeshTest:
         else:
             Console.error(f"Command {command} not found")
 
-
     def check_python_command(self,
-                     command="python --version",
-                     tests=["3.8.1", "3.8.2"],
-                     show=True):
+                             command="python --version",
+                             tests=["3.8.1", "3.8.2"],
+                             show=True):
 
         # banner(f"testing command: {command}")
         try:
@@ -186,7 +184,7 @@ class CloudmeshTest:
                 result = Shell.run(command).strip()
 
             for test in tests:
-                print (test)
+                print(test)
                 if test in result:
                     if show:
                         Console.ok(f"OK. {test} found in {result}")
@@ -258,7 +256,6 @@ class CloudmeshTest:
                 Console.ok(f"OK. Activate exists in {activate_path}")
             else:
                 Console.error(f"Could not find {activate_path}")
-
 
     def is_user_name_valid(self):
         # banner("Check For User Name")
