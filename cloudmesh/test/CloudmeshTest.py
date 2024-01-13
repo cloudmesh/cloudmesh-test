@@ -11,7 +11,7 @@ from cloudmesh.common.Shell import Shell
 from cloudmesh.common.console import Console
 from cloudmesh.common.util import path_expand
 from cloudmesh.configuration.Config import Config
-from cloudmesh.configuration.__version__ import version as latest
+from cloudmesh.configuration import __version__ as latest
 import shutil
 
 """
